@@ -1,6 +1,5 @@
 package tech.ada.resource;
 
-import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -17,8 +16,12 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class LessonResource {
-    @Inject
-    LessonService service;
+
+    // Inject service in Constructor
+    private final LessonService service;
+    public LessonResource(LessonService service) {
+        this.service = service;
+    }
 
     @GET
     @Path("/{courseId}/lessons")

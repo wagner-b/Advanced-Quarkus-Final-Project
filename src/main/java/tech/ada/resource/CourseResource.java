@@ -1,6 +1,5 @@
 package tech.ada.resource;
 
-import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -20,14 +19,15 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class CourseResource {
 
-    @Inject
-    CourseService service;
-
-    @Inject
-    LessonService lessonService;
-
-    @Inject
-    CourseMapper mapper;
+    // Inject services in Constructor
+    final private CourseService service;
+    final private LessonService lessonService;
+    final private CourseMapper mapper;
+    public CourseResource(CourseService service, LessonService lessonService, CourseMapper mapper) {
+        this.service = service;
+        this.lessonService = lessonService;
+        this.mapper = mapper;
+    }
 
     @GET
     public Response getCourses() {
