@@ -38,37 +38,32 @@ public class User extends PanacheEntity {
     private String role;
 
 
-    public String getUsername() {
-        return username;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public String getRole() {
-        return role;
-    }
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public void setRole(String role) {
-        this.role = role;
-    }
+    public String getUsername() {return username;}
+    public String getEmail() {return email;}
+    public String getPassword() {return password;}
+    public String getRole() {return role;}
 
-    public static void add(@Valid String username, @Valid String email,
-                           @Valid String password, @Valid String role) {
+    public void setUsername(
+            @Valid String username
+    ) {this.username = username;}
+
+    public void setEmail(
+            @Valid String email
+    ) {this.email = email.toLowerCase().trim();}
+
+    public void setPassword(
+            @Valid String password
+    ) {this.password = BcryptUtil.bcryptHash(password);}
+
+    public void setRole(@Valid String role) {this.role = role;}
+
+
+    public static void add(String username, String email,
+                           String password, String role) {
         User user = new User();
         user.setUsername(username);
-        user.setEmail(email.toLowerCase().trim());
-        user.setPassword(BcryptUtil.bcryptHash(password));
+        user.setEmail(email);
+        user.setPassword(password);
         user.setRole(role);
         user.persist();
     }
