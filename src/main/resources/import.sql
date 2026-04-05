@@ -4,3 +4,7 @@
 -- insert into myentity (id, field) values(2, 'field-2');
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
+
+-- For testing purposes on dev mode
+insert into USER_AUTH (EMAIL, PASSWORD, ROLE, USERNAME, ID)
+values('admin@admin.com', 'admin', 'ADMIN', 'admin', 957134);
