@@ -67,7 +67,7 @@ public class User extends PanacheEntity {
                            @Valid String password, @Valid String role) {
         User user = new User();
         user.setUsername(username);
-        user.setEmail(email);
+        user.setEmail(email.toLowerCase().trim());
         user.setPassword(BcryptUtil.bcryptHash(password));
         user.setRole(role);
         user.persist();
