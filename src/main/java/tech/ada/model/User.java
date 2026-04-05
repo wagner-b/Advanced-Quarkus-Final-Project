@@ -9,7 +9,6 @@ import io.quarkus.security.jpa.Username;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -37,6 +36,15 @@ public class User extends PanacheEntity {
     @Roles
     private String role;
 
+    public User(String username, String email,
+                String password, String role) {
+        this.username = username;
+        this.email = email.toLowerCase().trim();
+        this.password = BcryptUtil.bcryptHash(password);
+        this.role = role;
+    }
+
+    protected User() {}
 
     public String getUsername() {return username;}
     public String getEmail() {return email;}
@@ -44,27 +52,17 @@ public class User extends PanacheEntity {
     public String getRole() {return role;}
 
     public void setUsername(
-            @Valid String username
+            String username
     ) {this.username = username;}
 
     public void setEmail(
-            @Valid String email
+            String email
     ) {this.email = email.toLowerCase().trim();}
 
     public void setPassword(
-            @Valid String password
+            String password
     ) {this.password = BcryptUtil.bcryptHash(password);}
 
-    public void setRole(@Valid String role) {this.role = role;}
+    public void setRole(String role) {this.role = role;}
 
-
-    public static void add(String username, String email,
-                           String password, String role) {
-        User user = new User();
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setRole(role);
-        user.persist();
-    }
 }
