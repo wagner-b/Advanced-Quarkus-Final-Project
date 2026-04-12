@@ -9,4 +9,7 @@
 insert into USER_AUTH (EMAIL, PASSWORD, ROLE, USERNAME, ID)
 values('admin@admin.com',
 '$2b$10$iDQyAaZwkeJfVHT0a9oKB.U6MC.tC3PyXErI0Ou5dCwItONul2eDi',
-'ADMIN', 'admin', 957134);
+'ADMIN', 'admin', 957134)
+WHERE NOT EXISTS (
+    SELECT 1 FROM USER_AUTH WHERE USERNAME = 'admin'
+    );
