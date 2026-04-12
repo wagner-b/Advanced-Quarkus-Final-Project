@@ -6,8 +6,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import tech.ada.dto.TokenResponseDTO;
 import tech.ada.security.JwtGenerator;
-import java.util.Map;
 
 @Path("/auth")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -22,10 +22,10 @@ public class AuthResource {
     @Path("/token")
     @POST
     public Response generateJws() {
-        String token = jwtGenerator.generateJws();
+        TokenResponseDTO dto = jwtGenerator.generateJws();
         return Response.status(201)
                 .header("Content-Type", "application/json")
-                .entity(Map.of("token", token))
+                .entity(dto)
                 .build();
     }
 }
