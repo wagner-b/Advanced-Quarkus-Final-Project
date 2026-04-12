@@ -7,4 +7,6 @@
 
 -- For testing purposes on dev mode
 insert into USER_AUTH (EMAIL, PASSWORD, ROLE, USERNAME, ID)
-values('admin@admin.com', 'admin', 'ADMIN', 'admin', 957134);
+values('admin@admin.com',
+'$2b$10$iDQyAaZwkeJfVHT0a9oKB.U6MC.tC3PyXErI0Ou5dCwItONul2eDi',
+'ADMIN', 'admin', 957134);
