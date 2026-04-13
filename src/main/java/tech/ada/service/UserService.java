@@ -3,14 +3,14 @@ package tech.ada.service;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.WebApplicationException;
-import tech.ada.dto.UserRequestDTO;
+import tech.ada.dto.UserNewDTO;
 import tech.ada.model.User;
 
 @ApplicationScoped
 public class UserService {
 
     @Transactional
-    public User addUser(UserRequestDTO dto) {
+    public User addUser(UserNewDTO dto) {
         // returns 409 if email is already registered
         boolean exists = User.find("email", dto.email())
                 .firstResultOptional().isPresent();

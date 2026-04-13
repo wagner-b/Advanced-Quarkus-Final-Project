@@ -7,7 +7,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import tech.ada.dto.UserRequestDTO;
+import tech.ada.dto.UserNewDTO;
 import tech.ada.dto.UserResponseDTO;
 import tech.ada.model.User;
 import tech.ada.service.UserService;
@@ -25,7 +25,7 @@ public class UserResource {
     }
 
     @POST
-    public Response addUser(@Valid UserRequestDTO dto) {
+    public Response addUser(@Valid UserNewDTO dto) {
         User newUser = service.addUser(dto);
 
         UserResponseDTO payload = new UserResponseDTO(
