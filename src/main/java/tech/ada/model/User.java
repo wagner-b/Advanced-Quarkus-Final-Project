@@ -19,6 +19,7 @@ import jakarta.validation.constraints.Size;
 public class User extends PanacheEntity {
 
     @NotBlank(message = "Name must not be blank")
+    @Column(nullable = false, unique = true)
     @Username
     private String username;
 
