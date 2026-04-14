@@ -7,7 +7,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.ws.rs.NotAuthorizedException;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import tech.ada.dto.TokenResponseDTO;
-import tech.ada.dto.UserRequestDTO;
+import tech.ada.dto.UserSignInDTO;
 import tech.ada.model.User;
 
 @ApplicationScoped
@@ -15,7 +15,7 @@ public class JwtGenerator {
     @ConfigProperty(name = "smallrye.jwt.new-token.lifespan")
     long jwtDuration;
 
-    public TokenResponseDTO generateJws(UserRequestDTO dto) {
+    public TokenResponseDTO generateJws(UserSignInDTO dto) {
 
         User user = User.<User>find("email", dto.email())
                 .firstResultOptional()
@@ -31,7 +31,7 @@ public class JwtGenerator {
         }
 
         String token = Jwt.claims()
-                .subject(dto.username())
+                .claim("id", user.id)
                 .claim("role", user.getRole())
                 .sign();
         return new TokenResponseDTO(token, jwtDuration);
