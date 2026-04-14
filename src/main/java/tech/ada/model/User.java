@@ -25,11 +25,11 @@ public class User extends PanacheEntity {
 
     @NotBlank(message = "Email must not be blank")
     @Column(nullable = false, unique = true)
-    @Email
+//    @Email
     private String email;
 
     @NotBlank(message = "Password must not be blank")
-    @Size(min = 8, message = "Password must have at least 8 characters")
+//    @Size(min = 8, message = "Password must have at least 8 characters")
     @Password
     private String password;
 
