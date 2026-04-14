@@ -25,7 +25,7 @@ public class AuthResource {
     @POST
     public Response generateJws(@Valid UserSignInDTO dto) {
         TokenResponseDTO payload = jwtGenerator.generateJws(dto);
-        return Response.status(201)
+        return Response.status(200)
                 .header("Content-Type", "application/json")
                 .entity(payload)
                 .build();
