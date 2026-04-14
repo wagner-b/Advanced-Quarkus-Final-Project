@@ -9,6 +9,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import tech.ada.dto.TokenResponseDTO;
 import tech.ada.dto.UserSignInDTO;
 import tech.ada.model.User;
+import java.util.Set;
 
 @ApplicationScoped
 public class JwtGenerator {
@@ -32,7 +33,7 @@ public class JwtGenerator {
 
         String token = Jwt.claims()
                 .claim("id", user.id)
-                .claim("role", user.getRole())
+                .groups(Set.of(user.getRole()))
                 .sign();
         return new TokenResponseDTO(token, jwtDuration);
     }
