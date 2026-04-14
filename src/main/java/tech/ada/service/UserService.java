@@ -16,8 +16,8 @@ public class UserService {
                 .firstResultOptional().isPresent();
         if (exists) {
             throw new WebApplicationException(
-                    "Error! This email address " +
-                            "is already registered.", 409
+                    "This email address is " +
+                            "already registered.", 409
             );
         }
         User user = new User(
