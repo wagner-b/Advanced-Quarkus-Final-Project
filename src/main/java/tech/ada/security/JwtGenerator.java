@@ -16,6 +16,9 @@ public class JwtGenerator {
     @ConfigProperty(name = "smallrye.jwt.new-token.lifespan")
     long jwtDuration;
 
+    @ConfigProperty(name = "mp.jwt.verify.issuer")
+    String issuer;
+
     public TokenResponseDTO generateJws(UserSignInDTO dto) {
 
         User user = User.<User>find("email", dto.email())
@@ -32,8 +35,9 @@ public class JwtGenerator {
         }
 
         String token = Jwt.claims()
-                .claim("id", user.id)
+                .subject(user.getEmail())
                 .groups(Set.of(user.getRole()))
+                .issuer(issuer)
                 .sign();
         return new TokenResponseDTO(token, jwtDuration);
     }
