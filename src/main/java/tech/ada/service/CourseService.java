@@ -38,7 +38,7 @@ public class CourseService {
         if (course == null) {
             throw new EntityNotFoundException("Course with id " + id + " not found");
         }
-        course.changeName(dto.name());
+        course.setName(dto.name());
         return course;
     }
 

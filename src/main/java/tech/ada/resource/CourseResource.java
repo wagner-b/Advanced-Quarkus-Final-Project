@@ -47,7 +47,7 @@ public class CourseResource {
 
         URI location = URI.create("/courses/" + course.getId());
         CourseResponseDTO payload = new CourseResponseDTO(course.getId(),
-                course.getName(), List.of());
+                course.getName(), course.getDescription(), List.of());
 
         return Response.created(location)
                 .header("Content-Type", "application/json")

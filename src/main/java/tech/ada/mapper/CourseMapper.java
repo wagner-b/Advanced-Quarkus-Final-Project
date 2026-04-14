@@ -19,7 +19,7 @@ public class CourseMapper {
 
         return new CourseResponseDTO(
                 course.getId(), course.getName(),
-                lessonDTOs
+                course.getDescription(), lessonDTOs
         );
     }
 }

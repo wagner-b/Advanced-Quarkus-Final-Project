@@ -8,6 +8,8 @@ public record CourseRequestDTO (
         @NotNull(message = "Name must not be null")
         @NotBlank(message = "Name must not be blank")
         @Size(min = 3, message = "Name must have at least 3 characters")
-        String name
+        String name,
+
+        String description
 ) {
 }

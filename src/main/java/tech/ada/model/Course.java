@@ -2,7 +2,6 @@ package tech.ada.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -20,12 +19,13 @@ public class Course extends PanacheEntity {
     @Size(min = 3, message = "Name must have at least 3 characters")
     private String name;
 
+    private String description;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "course_id")
     private final List<Lesson> lessons = new ArrayList<>();
 
     protected Course() {}
-
     public Course(String name) {
         this.name = name;
     }
@@ -33,17 +33,20 @@ public class Course extends PanacheEntity {
     public Long getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
-
+    public String getDescription() {
+        return description;
+    }
     public List<Lesson> getLessons() {
         return Collections.unmodifiableList(this.lessons);
     }
-
-    public void changeName(String name) {
+    public void setName(String name) {
         this.name = name;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void createLesson(Lesson lesson) {
