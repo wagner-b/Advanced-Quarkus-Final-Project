@@ -9,9 +9,7 @@ import io.quarkus.security.jpa.Username;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "user_auth")
@@ -21,7 +19,7 @@ public class User extends PanacheEntity {
     @NotBlank(message = "Name must not be blank")
     @Column(nullable = false, unique = true)
     @Username
-    private String username;
+    private String name;
 
     @NotBlank(message = "Email must not be blank")
     @Column(nullable = false, unique = true)
@@ -37,9 +35,9 @@ public class User extends PanacheEntity {
     @Roles
     private String role;
 
-    public User(String username, String email,
+    public User(String name, String email,
                 String password, String role) {
-        this.username = username;
+        this.name = name;
         this.email = email.toLowerCase().trim();
         this.password = BcryptUtil.bcryptHash(password);
         this.role = role;
@@ -47,14 +45,14 @@ public class User extends PanacheEntity {
 
     protected User() {}
 
-    public String getUsername() {return username;}
+    public String getName() {return name;}
     public String getEmail() {return email;}
     public String getPassword() {return password;}
     public String getRole() {return role;}
 
-    public void setUsername(
-            String username
-    ) {this.username = username;}
+    public void setName(
+            String name
+    ) {this.name = name;}
 
     public void setEmail(
             String email

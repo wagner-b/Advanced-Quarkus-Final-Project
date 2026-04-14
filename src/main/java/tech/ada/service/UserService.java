@@ -21,7 +21,7 @@ public class UserService {
             );
         }
         User user = new User(
-                dto.username(),
+                dto.name(),
                 dto.email(),
                 dto.password(),
                 "USER"

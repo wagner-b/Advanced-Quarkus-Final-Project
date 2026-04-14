@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 
 public record UserNewDTO (
         @NotBlank(message = "Name must not be blank")
-        String username,
+        String name,
 
         @NotBlank(message = "Email must not be blank")
         @Email

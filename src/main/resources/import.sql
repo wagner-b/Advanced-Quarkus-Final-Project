@@ -6,7 +6,7 @@
 -- alter sequence myentity_seq restart with 4;
 
 -- For testing purposes on dev mode
-insert into USER_AUTH (EMAIL, PASSWORD, ROLE, USERNAME, ID)
+insert into USER_AUTH (EMAIL, PASSWORD, ROLE, NAME, ID)
 values('admin',
 '$2a$10$UbYlPA/iZ1e7MHczllnW/uEmNLPB369zEQzxmYA3UQMEG5MRyWed.',
 'ADMIN', 'admin', 957134);

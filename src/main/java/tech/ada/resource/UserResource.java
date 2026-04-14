@@ -12,8 +12,6 @@ import tech.ada.dto.UserResponseDTO;
 import tech.ada.model.User;
 import tech.ada.service.UserService;
 
-import java.net.URI;
-
 @Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -29,7 +27,7 @@ public class UserResource {
         User newUser = service.addUser(dto);
 
         UserResponseDTO payload = new UserResponseDTO(
-                newUser.getUsername(), newUser.getEmail(),
+                newUser.getName(), newUser.getEmail(),
                 newUser.getRole()
         );
 
