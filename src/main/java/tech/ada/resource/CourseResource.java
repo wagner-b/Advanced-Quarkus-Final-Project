@@ -1,5 +1,7 @@
 package tech.ada.resource;
 
+import io.quarkus.security.Authenticated;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -17,6 +19,7 @@ import java.util.List;
 @Path("/courses")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Authenticated
 public class CourseResource {
 
     // Inject services in Constructor
@@ -42,6 +45,7 @@ public class CourseResource {
     }
 
     @POST
+    @RolesAllowed({"ADMIN"})
     public Response createCourse(@Valid CourseRequestDTO dto) {
         Course course = service.createCourse(dto);
 
@@ -67,6 +71,7 @@ public class CourseResource {
 
     @PUT
     @Path("/{id}")
+    @RolesAllowed({"ADMIN"})
     public Response updateCourse(@PathParam("id") Long id,
                                  @Valid CourseRequestDTO dto) {
         Course course = service.updateCourse(id, dto);
@@ -78,6 +83,7 @@ public class CourseResource {
 
     @DELETE
     @Path("/{id}")
+    @RolesAllowed({"ADMIN"})
     public Response deleteCourse(@PathParam("id") Long id,
                                  @Valid CourseRequestDTO dto) {
         service.deleteCourse(id, dto);

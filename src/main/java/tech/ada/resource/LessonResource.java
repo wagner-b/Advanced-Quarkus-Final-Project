@@ -1,5 +1,7 @@
 package tech.ada.resource;
 
+import io.quarkus.security.Authenticated;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -15,6 +17,7 @@ import java.util.List;
 @Path("/courses")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Authenticated
 public class LessonResource {
 
     // Inject service in Constructor
@@ -38,6 +41,7 @@ public class LessonResource {
 
     @POST
     @Path("/{courseId}/lessons")
+    @RolesAllowed({"ADMIN"})
     public Response createLesson(
             @PathParam("courseId") Long courseId,
             @Valid CreateLessonRequestDTO dto
