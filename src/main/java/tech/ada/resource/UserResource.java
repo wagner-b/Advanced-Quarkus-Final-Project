@@ -48,7 +48,7 @@ public class UserResource {
                 .header("Content-Type", "application/json")
                 .entity(
                     Map.of(
-                        "id", jwt.getClaim("id"),
+                        "id", jwt.getSubject(),
                         "groups", jwt.getGroups()
                     )
                 )

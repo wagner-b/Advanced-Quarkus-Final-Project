@@ -35,7 +35,7 @@ public class JwtGenerator {
         }
 
         String token = Jwt.claims()
-                .subject(user.getEmail())
+                .subject(Long.toString(user.id))
                 .groups(Set.of(user.getRole()))
                 .issuer(issuer)
                 .sign();
